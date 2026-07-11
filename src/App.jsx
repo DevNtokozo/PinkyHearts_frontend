@@ -1,29 +1,34 @@
 import React from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './pages/Home'
-import About from './pages/About'
-import Programs from './pages/Programs'
-import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import ParentDashboard from './pages/ParentDashboard'
+import Dashboard from './pages/Dashboard'
+import Parents from './pages/Parents'
+import Children from './pages/Children'
+import Payments from './pages/Payments'
 
 const App = () => {
   return (
-    <div>
+    <Routes>
       <Route path="/" element={<Home />} />
 
-     <Route path="/about" element={<About/>} />
+      <Route path="/dashboard" element={<Dashboard />} />
 
-     <Route path="/programs" element={<Programs />} />
+      <Route path="/parents" element={<Parents />} />
 
-     <Route path="/contact" element={<Contact />} />
+      <Route path="/children" element={<Children />} />
+
+      <Route path="/payments" element={<Payments />} />       
+
+          
 
      <Route path="/login" element={<Login />} />
 
      <Route path="/register" element={<Register />} />
 
-     <Route path="/dashboard" element={<ParentDashboard />} />
-    </div>
+     
+    </Routes>
   )
 }
 
