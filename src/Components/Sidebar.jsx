@@ -9,6 +9,14 @@ import {
 
 const Sidebar = () => {
   const location = useLocation();
+  const logout = () => {
+    console.log("Logout clicked");
+
+    localStorage.removeItem("user");
+
+    window.location.href="/login";
+
+};
 
   const menu = [
     { name: "Dashboard", icon: <FaHome />, path: "/dashboard" },
@@ -20,14 +28,23 @@ const Sidebar = () => {
   return (
     <aside className="w-64 min-h-screen bg-pink-500 text-white shadow-lg">
 
-      <div className="p-6 border-b border-pink-400">
-        <h2 className="text-2xl font-bold">
-          Pinky Hearts
-        </h2>
-        <p className="text-sm text-pink-100">
-          Day Care
-        </p>
-      </div>
+      <div className="p-6">
+
+    <img
+        src="/love.png"
+        alt="Pinky Hearts"
+        className="w-20 mx-auto"
+    />
+
+    <h2 className="text-center text-2xl font-bold mt-4">
+        Pinky Hearts
+    </h2>
+
+    <p className="text-center text-pink-100">
+        Day Care
+    </p>
+
+</div>
 
       <nav className="mt-6">
 
@@ -53,14 +70,16 @@ const Sidebar = () => {
 
       <div className="absolute bottom-0 w-64">
 
-        <button className="flex items-center gap-3 w-full px-6 py-4 hover:bg-pink-600">
+        <button
+onClick={logout}
+className="flex items-center gap-3 w-full px-6 py-4 hover:bg-pink-600"
+>
 
-          <FaSignOutAlt />
+<FaSignOutAlt/>
 
-          Logout
+Logout
 
-        </button>
-
+</button>
       </div>
 
     </aside>

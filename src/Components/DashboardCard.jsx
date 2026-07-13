@@ -1,21 +1,31 @@
-import React from 'react'
-
-const DashboardCard = ({ title, value, color }) => {
-
+ import {
+    FaUsers,
+    FaChild,
+    FaMoneyBillWave,
+    FaClipboardCheck
+} from "react-icons/fa";
+ 
+ const DashboardCard = ({ title, value, icon, color }) => {
   return (
+    <div className="bg-white rounded-2xl shadow-lg p-6 flex justify-between items-center hover:shadow-xl transition">
 
-    <div className={`rounded-xl shadow-md p-6 ${color}`}>
+      <div>
 
-      <h3 className="text-white text-lg">
-        {title}
-      </h3>
+        <p className="text-gray-500">
+          {title}
+        </p>
 
-      <p className="text-white text-4xl font-bold mt-3">
-        {value}
-      </p>
+        <h2 className="text-4xl font-bold mt-2">
+          {value}
+        </h2>
+
+      </div>
+
+      <div className={`text-5xl ${color}`}>
+        {icon}
+      </div>
 
     </div>
-
   );
 };
 

@@ -120,6 +120,50 @@ const Home = () => {
   </div>
 
 </section>
+<section className="py-20 bg-white">
+
+  <div className="max-w-7xl mx-auto px-8">
+
+    <h2 className="text-4xl font-bold text-center text-pink-500">
+      Our Gallery
+    </h2>
+
+    <p className="text-center text-gray-600 mt-4">
+      A glimpse into the fun, learning and friendships at Pinky Hearts.
+    </p>
+
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+
+      <img
+        src="/happy.png"
+        alt="Children learning"
+        className="rounded-2xl shadow-lg hover:scale-105 transition duration-300"
+      />
+
+      <img
+        src="/learning.png"
+        alt="Creative activities"
+        className="rounded-2xl shadow-lg hover:scale-105 transition duration-300"
+      />
+
+      <img
+        src="/play.png"
+        alt="Outdoor play"
+        className="rounded-2xl shadow-lg hover:scale-105 transition duration-300"
+      />
+
+       <img
+        src="/smile.png"
+        alt="Outdoor play"
+        className="rounded-2xl shadow-lg hover:scale-105 transition duration-300"
+      />
+
+
+    </div>
+
+  </div>
+
+</section>
 
 
 
