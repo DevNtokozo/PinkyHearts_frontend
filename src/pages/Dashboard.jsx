@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { getUsers } from "../services/api";
+import { getChildren } from "../services/api";
 
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
@@ -14,6 +15,7 @@ import {
 
 const Dashboard = () => {
   const [parents, setParents] = useState([]);
+  const [children, setChildren] = useState([]);
 
   useEffect(() => {
     loadParents();
@@ -27,6 +29,22 @@ const loadParents = async () => {
         console.log(error);
     }
 };
+
+const loadChildren = async () => {
+
+    const response = await getChildren();
+
+    setChildren(response.data);
+
+};
+
+useEffect(() => {
+
+    loadParents();
+
+    loadChildren();
+
+}, []);
   return (
     <div className="flex bg-pink-50 min-h-screen">
       <Sidebar />
@@ -45,7 +63,7 @@ const loadParents = async () => {
 
             <DashboardCard
               title="Children"
-              value="67"
+              value={children.length}
               icon={<FaChild />}
               color="text-violet-500"
             />

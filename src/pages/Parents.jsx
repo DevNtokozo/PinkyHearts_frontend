@@ -1,5 +1,5 @@
 import React from 'react'
-import Modal from "../components/Modal";
+
 import { register, updateUser } from "../services/api";
 
 import { useEffect, useState } from "react";
@@ -7,6 +7,8 @@ import { getUsers, deleteUser } from "../services/api";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import DataTable from "../components/DataTable";
+import ParentModal from '../Components/ParentModal';
+
 
 const Parents = () => {
 
@@ -127,7 +129,7 @@ const handleSubmit = async (e) => {
         setIsOpen(true);
 
     }}
-    className="bg-pink-500 text-white px-5 py-2 rounded-lg"
+    className="bg-pink-500 text-white px-5 py-2 rounded-lg cursor-pointer"
 >
     + Add Parent
 </button>
@@ -160,7 +162,7 @@ const handleSubmit = async (e) => {
         setIsOpen(true);
 
     }}
-    className="bg-blue-500 text-white px-3 py-1 rounded"
+    className="bg-blue-500 text-white px-3 py-1 rounded cursor-pointer"
 >
     Edit
 </button>
@@ -168,7 +170,7 @@ const handleSubmit = async (e) => {
                                     onClick={() =>
                                         handleDelete(parent.id)
                                     }
-                                    className="bg-red-500 text-white px-3 py-1 rounded"
+                                    className="bg-red-500 text-white px-3 py-1 rounded cursor-pointer"
                                 >
                                     Delete
                                 </button>
@@ -182,7 +184,7 @@ const handleSubmit = async (e) => {
                 </div>
 
             </div>
-            <Modal
+     <ParentModal
     isOpen={isOpen}
     title={isEditing ? "Edit Parent" : "Add Parent"}
     formData={formData}

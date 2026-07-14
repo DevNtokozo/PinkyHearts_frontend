@@ -1,15 +1,15 @@
 import React from 'react'
 
 const Modal = ({
-  isOpen,
-  title,
-  formData,
-  handleChange,
-  handleSubmit,
-  closeModal,
-  isEditing,
+    isOpen,
+    title,
+    formData,
+    handleChange,
+    handleSubmit,
+    closeModal,
+    isEditing,
+    parents = [],
 }) => {
-
   if (!isOpen) return null;
 
   return (
@@ -20,74 +20,100 @@ const Modal = ({
         <h2 className="text-2xl font-bold text-pink-500 mb-6">
           {title}
         </h2>
+<form onSubmit={handleSubmit} className="space-y-4">
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+  <input
+    type="text"
+    name="firstName"
+    placeholder="First Name"
+    value={formData.firstName}
+    onChange={handleChange}
+    className="w-full border rounded-lg p-3"
+  />
 
-          <div className="grid grid-cols-2 gap-4">
+  <input
+    type="text"
+    name="lastName"
+    placeholder="Last Name"
+    value={formData.lastName}
+    onChange={handleChange}
+    className="w-full border rounded-lg p-3"
+  />
 
-            <input
-              type="text"
-              name="firstName"
-              placeholder="First Name"
-              value={formData.firstName}
-              onChange={handleChange}
-              className="border rounded-lg p-3"
-              required
-            />
+  {/* Only show for Children */}
 
-            <input
-              type="text"
-              name="lastName"
-              placeholder="Last Name"
-              value={formData.lastName}
-              onChange={handleChange}
-              className="border rounded-lg p-3"
-              required
-            />
+  {"age" in formData && (
+    <input
+      type="number"
+      name="age"
+      placeholder="Age"
+      value={formData.age}
+      onChange={handleChange}
+      className="w-full border rounded-lg p-3"
+    />
+  )}
 
-          </div>
+  {"gender" in formData && (
+    <select
+      name="gender"
+      value={formData.gender}
+      onChange={handleChange}
+      className="w-full border rounded-lg p-3"
+    >
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+  )}
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-            required
-          />
+  {"classroom" in formData && (
+    <input
+      type="text"
+      name="classroom"
+      placeholder="Classroom"
+      value={formData.classroom}
+      onChange={handleChange}
+      className="w-full border rounded-lg p-3"
+    />
+  )}
 
-          <input
-            type="text"
-            name="phone"
-            placeholder="Phone Number"
-            value={formData.phone}
-            onChange={handleChange}
-            className="w-full border rounded-lg p-3"
-            required
-          />
+  {"parentId" in formData && (
+    <select
+      name="parentId"
+      value={formData.parentId}
+      onChange={handleChange}
+      className="w-full border rounded-lg p-3"
+    >
+      <option value="">Select Parent</option>
 
-          <div className="flex justify-end gap-3 pt-4">
+      {parents.map((parent) => (
+        <option key={parent.id} value={parent.id}>
+          {parent.firstName} {parent.lastName}
+        </option>
+      ))}
+    </select>
+  )}
 
-            <button
-              type="button"
-              onClick={closeModal}
-              className="px-5 py-2 rounded-lg border"
-            >
-              Cancel
-            </button>
+  <div className="flex justify-end gap-3">
 
-            <button
-              type="submit"
-              className="bg-pink-500 text-white px-5 py-2 rounded-lg hover:bg-pink-600"
-            >
-              {isEditing ? "Update" : "Save"}
-            </button>
+    <button
+      type="button"
+      onClick={closeModal}
+      className="px-4 py-2 border rounded-lg"
+    >
+      Cancel
+    </button>
 
-          </div>
+    <button
+      type="submit"
+      className="bg-pink-500 text-white px-5 py-2 rounded-lg"
+    >
+      {isEditing ? "Update" : "Save"}
+    </button>
 
-        </form>
+  </div>
 
+</form>
       </div>
 
     </div>

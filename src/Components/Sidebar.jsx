@@ -30,11 +30,7 @@ const Sidebar = () => {
 
       <div className="p-6">
 
-    <img
-        src="/love.png"
-        alt="Pinky Hearts"
-        className="w-20 mx-auto"
-    />
+    
 
     <h2 className="text-center text-2xl font-bold mt-4">
         Pinky Hearts
@@ -72,7 +68,7 @@ const Sidebar = () => {
 
         <button
 onClick={logout}
-className="flex items-center gap-3 w-full px-6 py-4 hover:bg-pink-600"
+className="flex items-center gap-3 w-full px-6 py-4 hover:bg-pink-600 cursor-pointer"
 >
 
 <FaSignOutAlt/>
