@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import Parents from './pages/Parents'
 import Children from './pages/Children'
 import Payments from './pages/Payments'
+import Attendance from './pages/Attendance';
 
 const App = () => {
   return (
@@ -26,6 +27,11 @@ const App = () => {
      <Route path="/login" element={<Login />} />
 
      <Route path="/register" element={<Register />} />
+
+     <Route
+    path="/attendance"
+    element={<Attendance />}
+/>
 
      
     </Routes>

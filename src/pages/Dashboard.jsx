@@ -2,6 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { getUsers } from "../services/api";
 import { getChildren } from "../services/api";
+import { getPayments } from "../services/api";
+import { getAttendance } from "../services/api";
 
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
@@ -16,10 +18,42 @@ import {
 const Dashboard = () => {
   const [parents, setParents] = useState([]);
   const [children, setChildren] = useState([]);
+  const [payments, setPayments] = useState([]);
+  const [attendance, setAttendance] = useState([]);
 
-  useEffect(() => {
-    loadParents();
-}, []);
+
+
+const loadPayments = async () => {
+
+    try {
+
+        const response = await getPayments();
+
+        setPayments(response.data);
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
+};
+
+const loadAttendance = async () => {
+
+    try {
+
+        const response = await getAttendance();
+
+        setAttendance(response.data);
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
+};
 
 const loadParents = async () => {
     try {
@@ -41,10 +75,25 @@ const loadChildren = async () => {
 useEffect(() => {
 
     loadParents();
-
     loadChildren();
+    loadPayments();
+    loadAttendance();
 
 }, []);
+
+const totalRevenue = payments.reduce(
+    (total, payment) => total + Number(payment.amount),
+    0
+);
+
+const presentToday = attendance.filter(
+    (record) => record.status === "Present"
+).length;
+
+const pendingPayments = payments.filter(
+    (payment) => payment.status === "Pending"
+).length;
+
   return (
     <div className="flex bg-pink-50 min-h-screen">
       <Sidebar />
@@ -69,18 +118,32 @@ useEffect(() => {
             />
 
             <DashboardCard
-              title="Payments"
-              value="R25 600"
-              icon={<FaMoneyBillWave />}
-              color="text-green-500"
-            />
+    title="Revenue"
+    value={`R ${totalRevenue}`}
+    icon={<FaMoneyBillWave />}
+    color="text-green-500"
+/>
 
             <DashboardCard
-              title="Attendance"
-              value="58"
-              icon={<FaClipboardCheck />}
-              color="text-amber-500"
-            />
+    title="Present Today"
+    value={presentToday}
+    icon={<FaClipboardCheck />}
+    color="text-amber-500"
+/>
+
+    <DashboardCard
+    title="Pending Payments"
+    value={pendingPayments}
+    icon={<FaMoneyBillWave />}
+    color="text-red-500"
+/>
+
+<DashboardCard
+    title="Attendance Records"
+    value={attendance.length}
+    icon={<FaClipboardCheck />}
+    color="text-blue-500"
+/>
           </div>
 
           <div className="bg-white rounded-xl shadow-lg p-6">
@@ -130,6 +193,57 @@ useEffect(() => {
 
                     <td>
                         {parent.phone}
+                    </td>
+
+                </tr>
+
+            ))}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<div className="bg-white rounded-xl shadow-lg p-6 mt-8">
+
+    <h2 className="text-2xl font-semibold text-pink-500 mb-4">
+        Recent Payments
+    </h2>
+
+    <table className="w-full">
+
+        <thead>
+            <tr className="border-b">
+                <th className="text-left py-3">Child</th>
+                <th className="text-left py-3">Amount</th>
+                <th className="text-left py-3">Month</th>
+                <th className="text-left py-3">Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {payments.slice(0, 5).map((payment) => (
+
+                <tr key={payment.id} className="border-b hover:bg-pink-50">
+
+                    <td>{payment.child.firstName} {payment.child.lastName}</td>
+
+                    <td>R {payment.amount}</td>
+
+                    <td>{payment.month}</td>
+
+                    <td>
+                        <span
+                            className={`px-2 py-1 rounded-full text-white ${
+                                payment.status === "Paid"
+                                    ? "bg-green-500"
+                                    : "bg-yellow-500"
+                            }`}
+                        >
+                            {payment.status}
+                        </span>
                     </td>
 
                 </tr>

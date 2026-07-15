@@ -15,6 +15,7 @@ import ChildModal from "../Components/ChildModal";
 
 
 
+
 const Children = () => {
 
   const [children, setChildren] = useState([]);
@@ -142,16 +143,24 @@ const Children = () => {
           </div>
 
           <DataTable
-            columns={[
-              "First Name",
-              "Last Name",
-              "Age",
-              "Gender",
-              "Classroom",
-              "Parent",
-            ]}
-            data={children}
-            renderActions={(child) => (
+  columns={[
+    "First Name",
+    "Last Name",
+    "Age",
+    "Gender",
+    "Classroom",
+    "Parent",
+  ]}
+  fields={[
+    "firstName",
+    "lastName",
+    "age",
+    "gender",
+    "classroom",
+    "parent",
+  ]}
+  data={children}
+  renderActions={(child) => (
 
               <div className="space-x-2">
 

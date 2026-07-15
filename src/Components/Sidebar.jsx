@@ -4,6 +4,7 @@ import {
   FaUsers,
   FaChild,
   FaMoneyBillWave,
+  FaClipboardCheck,
   FaSignOutAlt,
 } from "react-icons/fa";
 
@@ -23,6 +24,11 @@ const Sidebar = () => {
     { name: "Parents", icon: <FaUsers />, path: "/parents" },
     { name: "Children", icon: <FaChild />, path: "/children" },
     { name: "Payments", icon: <FaMoneyBillWave />, path: "/payments" },
+    {
+    name: "Attendance",
+    icon: <FaClipboardCheck />,
+    path: "/attendance",
+},
   ];
 
   return (

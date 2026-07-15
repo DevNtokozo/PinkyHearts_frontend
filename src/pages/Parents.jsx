@@ -7,7 +7,7 @@ import { getUsers, deleteUser } from "../services/api";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import DataTable from "../components/DataTable";
-import ParentModal from '../Components/ParentModal';
+import ParentModal from '../components/ParentModal';
 
 
 const Parents = () => {
@@ -136,51 +136,50 @@ const handleSubmit = async (e) => {
                     </div>
 
                     <DataTable
+  columns={[
+    "First Name",
+    "Last Name",
+    "Email",
+    "Phone",
+  ]}
+  fields={[
+    "firstName",
+    "lastName",
+    "email",
+    "phone",
+  ]}
+  data={parents}
+  renderActions={(parent) => (
+    <div className="space-x-2">
+      <button
+        onClick={() => {
+          setIsEditing(true);
+          setSelectedId(parent.id);
 
-                        columns={[
-                            "First Name",
-                            "Last Name",
-                            "Email",
-                            "Phone",
-                        ]}
+          setFormData({
+            firstName: parent.firstName,
+            lastName: parent.lastName,
+            email: parent.email,
+            phone: parent.phone,
+            password: "",
+          });
 
-                        data={parents}
+          setIsOpen(true);
+        }}
+        className="bg-blue-500 text-white px-3 py-1 rounded"
+      >
+        Edit
+      </button>
 
-                        renderActions={(parent) => (
-
-                            <div className="space-x-2">
-
-                                <button
-    onClick={() => {
-
-        setIsEditing(true);
-
-        setSelectedId(parent.id);
-
-        setFormData(parent);
-
-        setIsOpen(true);
-
-    }}
-    className="bg-blue-500 text-white px-3 py-1 rounded cursor-pointer"
->
-    Edit
-</button>
-                                <button
-                                    onClick={() =>
-                                        handleDelete(parent.id)
-                                    }
-                                    className="bg-red-500 text-white px-3 py-1 rounded cursor-pointer"
-                                >
-                                    Delete
-                                </button>
-
-                            </div>
-
-                        )}
-
-                    />
-
+      <button
+        onClick={() => handleDelete(parent.id)}
+        className="bg-red-500 text-white px-3 py-1 rounded"
+      >
+        Delete
+      </button>
+    </div>
+  )}
+/>
                 </div>
 
             </div>

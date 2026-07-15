@@ -28,4 +28,29 @@ export const updateChild = (id, data) =>
 export const deleteChild = (id) =>
     API.delete(`/children/${id}`);
 
+export const getPayments = () =>
+    API.get("/payments");
+
+export const addPayment = (data) =>
+    API.post("/payments", data);
+
+export const updatePayment = (id, data) =>
+    API.put(`/payments/${id}`, data);
+
+export const deletePayment = (id) =>
+    API.delete(`/payments/${id}`);
+
+// Attendance APIs
+export const getAttendance = () =>
+    API.get("/attendance");
+
+export const markAttendance = (data) =>
+    API.post("/attendance", data);
+
+export const checkOut = (id) =>
+    API.put(`/attendance/${id}/checkout`);
+
+export const deleteAttendance = (id) =>
+    API.delete(`/attendance/${id}`);
+
 export default API;

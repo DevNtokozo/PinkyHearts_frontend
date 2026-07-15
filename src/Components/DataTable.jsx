@@ -1,18 +1,26 @@
-const DataTable = ({ columns, data, renderActions }) => {
+const DataTable = ({
+  columns = [],
+  fields = [],
+  data = [],
+  renderActions,
+}) => {
+  const getValue = (obj, path) => {
+    return path.split(".").reduce((value, key) => value?.[key], obj);
+  };
+  console.log("Columns:", columns);
+console.log("Fields:", fields);
+console.log("Data:", data);
+
   return (
     <div className="overflow-x-auto bg-white rounded-xl shadow">
 
       <table className="w-full">
 
         <thead className="bg-pink-500 text-white">
-
           <tr>
 
             {columns.map((column) => (
-              <th
-                key={column}
-                className="p-4 text-left"
-              >
+              <th key={column} className="p-4 text-left">
                 {column}
               </th>
             ))}
@@ -22,7 +30,6 @@ const DataTable = ({ columns, data, renderActions }) => {
             </th>
 
           </tr>
-
         </thead>
 
         <tbody>
@@ -30,14 +37,12 @@ const DataTable = ({ columns, data, renderActions }) => {
           {data.length === 0 ? (
 
             <tr>
-
               <td
                 colSpan={columns.length + 1}
                 className="text-center py-8 text-gray-500"
               >
                 No records found.
               </td>
-
             </tr>
 
           ) : (
@@ -49,28 +54,28 @@ const DataTable = ({ columns, data, renderActions }) => {
                 className="border-b hover:bg-pink-50"
               >
 
-                {Object.keys(row)
-                  .filter(key => key !== "id")
-                  .slice(0, columns.length)
-                  .map((key) => (
+                {fields.map((field) => {
+  let value = getValue(row, field);
 
-                    <td
-                      key={key}
-                      className="p-4"
-                    >
+  // Automatically display names for Parent or Child objects
+  if (
+    value &&
+    typeof value === "object" &&
+    value.firstName &&
+    value.lastName
+  ) {
+    value = `${value.firstName} ${value.lastName}`;
+  }
 
-                      {typeof row[key] === "object"
-                        ? row[key]?.firstName + " " + row[key]?.lastName
-                        : row[key]}
-
-                    </td>
-
-                  ))}
+  return (
+    <td key={field} className="p-4">
+      {value ?? "-"}
+    </td>
+  );
+})}
 
                 <td className="p-4">
-
                   {renderActions(row)}
-
                 </td>
 
               </tr>
