@@ -4,6 +4,7 @@ import { getUsers } from "../services/api";
 import { getChildren } from "../services/api";
 import { getPayments } from "../services/api";
 import { getAttendance } from "../services/api";
+import { getEvents } from "../services/api";
 
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
@@ -94,6 +95,17 @@ const pendingPayments = payments.filter(
     (payment) => payment.status === "Pending"
 ).length;
 
+const [events, setEvents] = useState([]);
+
+useEffect(() => {
+    loadEvents();
+}, []);
+
+const loadEvents = async () => {
+    const response = await getEvents();
+    setEvents(response.data);
+};
+
   return (
     <div className="flex bg-pink-50 min-h-screen">
       <Sidebar />
@@ -118,38 +130,33 @@ const pendingPayments = payments.filter(
             />
 
             <DashboardCard
-    title="Revenue"
-    value={`R ${totalRevenue}`}
-    icon={<FaMoneyBillWave />}
-    color="text-green-500"
+            title="Revenue"
+            value={`R ${totalRevenue}`}
+            icon={<FaMoneyBillWave />}
+            color="text-green-500"
 />
 
             <DashboardCard
-    title="Present Today"
-    value={presentToday}
-    icon={<FaClipboardCheck />}
-    color="text-amber-500"
+             title="Present Today"
+             value={presentToday}
+             icon={<FaClipboardCheck />}
+             color="text-amber-500"
 />
 
-    <DashboardCard
-    title="Pending Payments"
-    value={pendingPayments}
-    icon={<FaMoneyBillWave />}
-    color="text-red-500"
+            <DashboardCard
+             title="Pending Payments"
+             value={pendingPayments}
+             icon={<FaMoneyBillWave />}
+             color="text-red-500"
 />
 
-<DashboardCard
-    title="Attendance Records"
-    value={attendance.length}
-    icon={<FaClipboardCheck />}
-    color="text-blue-500"
-/>
+           
           </div>
 
           <div className="bg-white rounded-xl shadow-lg p-6">
 
     <h2 className="text-2xl font-semibold text-pink-500 mb-5">
-        Recently Registered Parents
+        Registered Parents
     </h2>
 
     <table className="w-full">
@@ -255,41 +262,39 @@ const pendingPayments = payments.filter(
     </table>
 
 </div>
-            <div className="bg-white rounded-xl shadow-lg p-6">
-    <h2 className="text-2xl font-semibold text-pink-500 mb-4">
-      Upcoming Events
+            <div className="bg-white rounded-xl shadow p-6">
+
+    <h2 className="text-xl font-bold mb-4">
+        Upcoming Events
     </h2>
 
-    <ul className="space-y-4">
-      <li>🎨 Art Day - Friday</li>
-      <li>🎂 Birthday Celebration</li>
-      <li>🌳 Outdoor Learning</li>
-    </ul>
-  </div>
-          </div>
-          <div className="mt-10 bg-white rounded-xl shadow-lg p-6">
+    {events.length === 0 ? (
+        <p>No upcoming events.</p>
+    ) : (
+        events.map(event => (
+            <div key={event.id} className="border-b py-3">
 
-    <h2 className="text-2xl font-semibold text-pink-500 mb-6">
-        Quick Actions
-    </h2>
+                <h3 className="font-semibold">
+                    {event.title}
+                </h3>
 
-    <div className="flex gap-4 flex-wrap">
+                <p>{event.description}</p>
 
-        <button className="bg-pink-500 text-white px-5 py-3 rounded-lg hover:bg-pink-600">
-            Add Parent
-        </button>
+                <p className="text-sm text-gray-500">
+                    {event.eventDate} • {event.eventTime}
+                </p>
 
-        <button className="bg-violet-500 text-white px-5 py-3 rounded-lg">
-            Add Child
-        </button>
+                <p className="text-sm">
+                    {event.venue}
+                </p>
 
-        <button className="bg-green-500 text-white px-5 py-3 rounded-lg">
-            Record Payment
-        </button>
-
-    </div>
+            </div>
+        ))
+    )}
 
 </div>
+          </div>
+          
         </div>
       </div>
     

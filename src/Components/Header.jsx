@@ -33,15 +33,7 @@ const Header = () => {
 
                 </div>
 
-                <button className="relative">
-
-                    <FaBell className="text-2xl text-pink-500"/>
-
-                    <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full text-xs px-2">
-                        3
-                    </span>
-
-                </button>
+                
 
                 <FaUserCircle className="text-4xl text-pink-500"/>
 

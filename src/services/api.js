@@ -53,4 +53,16 @@ export const checkOut = (id) =>
 export const deleteAttendance = (id) =>
     API.delete(`/attendance/${id}`);
 
+export const getEvents = () =>
+    API.get("/events");
+
+export const addEvent = (data) =>
+    API.post("/events", data);
+
+export const updateEvent = (id, data) =>
+    API.put(`/events/${id}`, data);
+
+export const deleteEvent = (id) =>
+    API.delete(`/events/${id}`);
+
 export default API;

@@ -62,23 +62,26 @@ const handleChange = (e) => {
 };
 
 const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    e.preventDefault();
+  try {
+    console.log(formData);
 
     await markAttendance(formData);
 
-    loadAttendance();
+    await loadAttendance();
 
     setIsOpen(false);
 
     setFormData({
-
-        childId: "",
-
-        status: "",
-
+      childId: "",
+      status: "",
     });
 
+  } catch (error) {
+    console.log(error);
+    alert("Failed to save attendance");
+  }
 };
 
     return (
@@ -93,11 +96,28 @@ const handleSubmit = async (e) => {
 
                 <div className="p-8">
 
-                    <h2 className="text-3xl font-bold">
-                        Attendance
-                    </h2>
+  <div className="flex justify-between items-center mb-6">
 
-                </div>
+    <h2 className="text-3xl font-bold">
+      Attendance
+    </h2>
+
+    <button
+      onClick={() => {
+        setFormData({
+          childId: "",
+          status: "",
+        });
+        setIsOpen(true);
+      }}
+      className="bg-pink-500 text-white px-5 py-2 rounded-lg hover:bg-pink-600"
+    >
+      + Mark Attendance
+    </button>
+
+  </div>
+  </div>
+
 
                 <DataTable
   columns={[

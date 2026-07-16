@@ -8,6 +8,7 @@ import Parents from './pages/Parents'
 import Children from './pages/Children'
 import Payments from './pages/Payments'
 import Attendance from './pages/Attendance';
+import Events from './pages/Events';
 
 const App = () => {
   return (
@@ -27,6 +28,8 @@ const App = () => {
      <Route path="/login" element={<Login />} />
 
      <Route path="/register" element={<Register />} />
+
+     <Route path="/events" element={<Events />} />
 
      <Route
     path="/attendance"
