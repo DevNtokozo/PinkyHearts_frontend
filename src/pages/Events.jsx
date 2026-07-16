@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 
-import Sidebar from "../components/Sidebar";
-import Header from "../components/Header";
-import DataTable from "../components/DataTable";
-import EventModal from "../components/EventModal";
+
 
 import {
   getEvents,
@@ -11,6 +8,10 @@ import {
   updateEvent,
   deleteEvent,
 } from "../services/api";
+import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
+import DataTable from "../components/DataTable";
+import EventModal from "../components/EventModal";
 
 const Events = () => {
 

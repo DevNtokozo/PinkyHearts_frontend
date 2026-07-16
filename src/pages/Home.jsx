@@ -1,12 +1,13 @@
 import React from 'react'
-import Navbar from "../components/Navbar";
+
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
+import Navbar from '../components/Navbar';
 
 const Home = () => {
   return (
     <>
-      <Navbar />
+      <Navbar/>
 
        <main className="bg-pink-50">
 
