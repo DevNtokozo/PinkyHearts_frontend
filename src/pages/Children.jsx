@@ -10,7 +10,7 @@ import {
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import DataTable from "../components/DataTable";
-import ChildModal from "../Components/ChildModal";
+import ChildModal from "../components/ChildModal";
 
 
 
