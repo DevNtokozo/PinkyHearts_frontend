@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "http://localhost:8080/api",
+    baseURL: "http://pinkyheartsbackend-production.up.railway.app/api",
 });
 
 export const register = (data) => API.post("/register", data);
