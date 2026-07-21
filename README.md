@@ -1,16 +1,149 @@
-# React + Vite
+# Pinky Hearts Day Care Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+**Pinky Hearts Day Care Management System** is a full-stack web application designed to streamline the daily operations of a day care center. The system enables administrators to manage children, parents, attendance, events, and payments through a modern, user-friendly interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The application was built using **Spring Boot** for the backend and **React (Vite)** for the frontend, with **PostgreSQL** as the database.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Features
 
-## Expanding the ESLint configuration
+### Parent Management
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* Register parents
+* Update parent information
+* Delete parent records
+* View all registered parents
+
+### Child Management
+
+* Register children
+* Assign children to parents
+* Update child details
+* Delete child records
+* View all children
+
+### Attendance Management
+
+* Record daily attendance
+* Track check-in times
+* Track check-out times
+* View attendance history
+
+### Event Management
+
+* Create events
+* Update event information
+* Delete events
+* View upcoming events
+
+### Payment Management
+
+* Record tuition payments
+* Track payment status
+* View payment history
+
+### Authentication
+
+* User registration
+* User login
+* Password encryption using BCrypt
+* Spring Security integration
+
+### REST API
+
+* CRUD operations
+* JSON request/response
+* Swagger API documentation
+
+---
+
+# Technologies Used
+
+## Backend
+
+* Java 21
+* Spring Boot
+* Spring Security
+* Spring Data JPA
+* Hibernate
+* PostgreSQL
+* Gradle
+* Swagger (OpenAPI)
+
+## Frontend
+
+* React
+* Vite
+* Tailwind CSS
+* Axios
+* React Router DOM
+* React Icons
+
+## Database
+
+* PostgreSQL
+
+---
+
+# Database
+
+The application uses PostgreSQL.
+
+Example configuration:
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/pinkyhearts
+spring.datasource.username=postgres
+spring.datasource.password=4160
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+```
+
+---
+
+# Deployment
+
+## Backend
+
+* Render
+
+## Frontend
+
+* Vercel
+
+## Database
+
+* PostgreSQL
+
+---
+
+# Future Enhancements
+
+* Email notifications to parents
+* SMS reminders
+* Dashboard analytics
+* Parent portal
+* Teacher portal
+* File uploads for child documents
+* Online payment integration
+* Report generation (PDF/Excel)
+
+---
+
+# Author
+
+**Ntokozo Mbuli**
+
+* BSc in Mathematics and Information Systems
+* Full Stack Developer
+* Java | Spring Boot | React | PostgreSQL
+
+---
+
+# License
+
+This project is intended for educational and portfolio purposes.
